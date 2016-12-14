@@ -34,6 +34,29 @@ class User extends BaseUser
      */
     protected $meneur;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Photo", mappedBy="user")
+     */
+    protected $photos;
+
+    /**
+     * @return mixed
+     */
+    public function getPhotos()
+    {
+        return $this->photos;
+    }
+
+    /**
+     * @param mixed $photos
+     */
+    public function setPhotos($photos)
+    {
+        $this->photos = $photos;
+    }
+
+
+
     public function __construct()
     {
         parent::__construct();
@@ -85,4 +108,30 @@ class User extends BaseUser
     {
         return $this->meneur;
     }
+<<<<<<< HEAD
+=======
+
+    /**
+     * Add photos
+     *
+     * @param \AppBundle\Entity\Photo $photos
+     * @return User
+     */
+    public function addPhoto(\AppBundle\Entity\Photo $photos)
+    {
+        $this->photos[] = $photos;
+
+        return $this;
+    }
+
+    /**
+     * Remove photos
+     *
+     * @param \AppBundle\Entity\Photo $photos
+     */
+    public function removePhoto(\AppBundle\Entity\Photo $photos)
+    {
+        $this->photos->removeElement($photos);
+    }
+>>>>>>> 9ad5827d69b51f4999caf3fad9418b496dadabcd
 }
