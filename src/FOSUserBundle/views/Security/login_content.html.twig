@@ -1,0 +1,100 @@
+<!-- Mixins-->
+<!-- Pen Title-->
+<div class="pen-title">
+    <h1>Bienvenue</h1>
+    {% trans_default_domain 'FOSUserBundle' %}
+
+    {% if error %}
+        <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+    {% endif %}
+
+</div>
+
+<div class="container">
+    <div class="card"></div>
+    <div class="card">
+        <h1 class="title">Login</h1>
+        <form action="{{ path("fos_user_security_check") }}" method="post">
+            {% if csrf_token %}
+                <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+            {% endif %}
+        <form>
+            <div class="input-container">
+                <input type="text" id="username" name="_username" value="{{ last_username }}" required="required" />
+                <label for="Username">{{ 'security.login.username'|trans }}</label>
+                <div class="bar"></div>
+            </div>
+            <div class="input-container">
+                <input type="password" id="password" name="_password" required="required" />
+                <label for="Password">{{ 'security.login.password'|trans }}</label>
+                <div class="bar"></div>
+            </div>
+            <div class="button-container">
+                <input class="btn-primary btn btn-lg" type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}" />
+            </div>
+            <div class="footer">
+                <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
+                <label for="remember_me">{{ 'security.login.remember_me'|trans }}</label>
+            </div>
+        </form>
+    </div>
+    <div class="card alt">
+        <div class="toggle"><span class="glyphicon ">&#x270f;</span></div>
+        <h1 class="title">Registre
+            <div class="close"></div>
+        </h1>
+        <form>
+            <div class="input-container">
+                <input type="text" id="Username" required="required"/>
+                <label for="Username">Username</label>
+                <div class="bar"></div>
+            </div>
+            <div class="input-container">
+                <input type="password" id="Password" required="required"/>
+                <label for="Password">Password</label>
+                <div class="bar"></div>
+            </div>
+            <div class="input-container">
+                <input type="password" id="Repeat Password" required="required"/>
+                <label for="Repeat Password">Repeat Password</label>
+                <div class="bar"></div>
+            </div>
+            <div class="button-container">
+                <button><span>Next</span></button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% block javascript %}
+<script>
+    $('.toggle').on('click', function() {
+        $('.container').stop().addClass('active');
+    });
+
+    $('.close').on('click', function() {
+        $('.container').stop().removeClass('active');
+    });
+</script>
+{% endblock %}
