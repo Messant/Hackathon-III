@@ -16,9 +16,13 @@ class User extends BaseUser
      * @ORM\Id
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
-     * @ORM\ManyToOne(targetEntity="Etat")
      */
     protected $id;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Etat")
+     */
+    protected $etats;
 
     /**
      *
@@ -130,6 +134,22 @@ class User extends BaseUser
     public function removePhoto(\AppBundle\Entity\Photo $photos)
     {
         $this->photos->removeElement($photos);
+    }
+
+    /**
+     * @param mixed $etats
+     */
+    public function setEtats($etats)
+    {
+        $this->etats = $etats;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getEtats()
+    {
+        return $this->etats;
     }
 
 }

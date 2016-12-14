@@ -24,10 +24,17 @@ class Etat
     /**
      * @var int
      *
+     * @ORM\Column(name="user", type="integer")
+     * @ORM\OneToMany(targetEntity="User")
+     */
+    private $user;
+
+    /**
+     * @var int
+     *
      * @ORM\Column(name="status", type="integer")
      */
     private $status;
-
 
     /**
      * Get id
@@ -60,5 +67,21 @@ class Etat
     public function getStatus()
     {
         return $this->status;
+    }
+
+    /**
+     * @param int $user
+     */
+    public function setUser($user)
+    {
+        $this->user = $user;
+    }
+
+    /**
+     * @return int
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 }
