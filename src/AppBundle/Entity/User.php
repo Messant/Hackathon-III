@@ -108,8 +108,6 @@ class User extends BaseUser
     {
         return $this->meneur;
     }
-<<<<<<< HEAD
-=======
 
     /**
      * Add photos
@@ -133,5 +131,5 @@ class User extends BaseUser
     {
         $this->photos->removeElement($photos);
     }
->>>>>>> 9ad5827d69b51f4999caf3fad9418b496dadabcd
+
 }
