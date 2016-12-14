@@ -1,3 +1,7 @@
+app_etat:
+    resource: "@AppBundle/Controller/EtatController.php"
+    type:     annotation
+
 front:
     resource: "@FrontBundle/Controller/"
     type:     annotation

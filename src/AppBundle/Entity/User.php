@@ -16,6 +16,7 @@ class User extends BaseUser
      * @ORM\Id
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\ManyToOne(targetEntity="Etat")
      */
     protected $id;
 
@@ -37,5 +38,51 @@ class User extends BaseUser
     {
         parent::__construct();
         // your own logic
+    }
+
+    /**
+     * Set classement
+     *
+     * @param integer $classement
+     * @return User
+     */
+    public function setClassement($classement)
+    {
+        $this->classement = $classement;
+
+        return $this;
+    }
+
+    /**
+     * Get classement
+     *
+     * @return integer 
+     */
+    public function getClassement()
+    {
+        return $this->classement;
+    }
+
+    /**
+     * Set meneur
+     *
+     * @param boolean $meneur
+     * @return User
+     */
+    public function setMeneur($meneur)
+    {
+        $this->meneur = $meneur;
+
+        return $this;
+    }
+
+    /**
+     * Get meneur
+     *
+     * @return boolean 
+     */
+    public function getMeneur()
+    {
+        return $this->meneur;
     }
 }
