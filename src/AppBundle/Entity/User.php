@@ -19,6 +19,20 @@ class User extends BaseUser
      */
     protected $id;
 
+    /**
+     *
+     * @ORM\Column(type="integer")
+     *
+     */
+    protected $classement;
+
+    /**
+     *
+     * @ORM\Column(type="boolean")
+     *
+     */
+    protected $meneur;
+
     public function __construct()
     {
         parent::__construct();
