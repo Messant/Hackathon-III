@@ -1,3 +1,11 @@
+app_photo:
+    resource: "@AppBundle/Controller/PhotoController.php"
+    type:     annotation
+
+app_user:
+    resource: "@AppBundle/Controller/UserController.php"
+    type:     annotation
+
 app_etat:
     resource: "@AppBundle/Controller/EtatController.php"
     type:     annotation
@@ -29,3 +37,4 @@ fos_user_resetting:
 fos_user_change_password:
     resource: "@FOSUserBundle/Resources/config/routing/change_password.xml"
     prefix: /profile
+
