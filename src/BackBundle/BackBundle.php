@@ -1,5 +1,6 @@
 <?php
 
+// src/BackBundle/BackBundle.php
 namespace BackBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
