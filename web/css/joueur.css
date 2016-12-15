@@ -16,6 +16,16 @@ html{
     color: white;
     font-weight: 700;
     font-size:15px;
-    margin-top: 60px;
+    margin-top: 55px;
     text-align: center;
+}
+.telechargement{
+    margin-top: 12em;
+}
+
+a:link{
+    text-decoration: none;
+}
+.paddingprofile{
+    padding-top:3px;
 }
