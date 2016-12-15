@@ -1,13 +1,30 @@
 {% extends 'base.html.twig' %}
-
-{% block header %}
-
+{% block stylesheet %}
+    {{ parent() }}
+    <link href="{{ asset('css/homepage.css') }}" rel="stylesheet" >
 {% endblock %}
 
 {% block content %}
-    {% include 'FrontBundle:Default:homepage.html.twig' %}
-{% endblock %}
+    index
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12">
+                <img src="{{ asset('images/logo.png') }}" class="center-block logo" alt="logo">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <a href="{{ path('joueur') }}"><button  type="button" class="btn btn-lg btn-primary btn-inscription center-block"  >Jouer</button> </a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <button type="button" class="btn btn-lg btn-primary btn-inscription center-block" >Accéder au règlements</button>
 
-{% block footer %}
-    {% include 'FrontBundle:Default:footer.html.twig' %}
+            </div>
+        </div>
+
+    </div>
+
+
 {% endblock %}
