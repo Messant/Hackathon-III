@@ -15,4 +15,7 @@ html{
 #profile{
     color: white;
     font-weight: 700;
+    font-size:15px;
+    margin-top: 60px;
+    text-align: center;
 }

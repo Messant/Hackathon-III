@@ -11,15 +11,26 @@
                 <img src="{{ asset('images/logo.png') }}" class="center-block logo" alt="logo">
             </div>
         </div>
-        <div class="row">
             <div id="profile">
-                {{ username }} <br/>
-                {{ email }} <br/>
-                {{ classement }} <br/>
+                <div class="row">
+                    <div class="col-sm-12">
+                        Ton pseudo : {{ username }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        Ton mail : {{ email }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                         Ton nombre de points : {{ classement }}
+                    </div>
+                </div>
             </div>
-
+        <a href=""><button type="button" class="btn btn-lg btn-success">Télécharge ta réponse</button> </a>
         </div>
-    </div>
+
 
 
 {% endblock %}
