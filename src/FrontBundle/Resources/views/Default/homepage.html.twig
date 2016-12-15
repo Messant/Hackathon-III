@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 {% block stylesheet %}
     {{ parent() }}
-    <link href="{{ asset('css/homepage.css') }}" rel="stylesheet" >
+    <link href="{{ asset('css/homepage.css') }}" rel="stylesheet">
 {% endblock %}
 
 {% block content %}
@@ -13,19 +13,28 @@
         </div>
         <div class="row">
             <div class="col-sm-12">
-                <a href="{{ path('fos_user_registration_register') }}"><button  type="button" class="btn btn-lg btn-primary btn-inscription center-block" id="inscription"  >S'inscrire</button> </a>
+                <a href="{{ path('fos_user_registration_register') }}">
+                    <button type="button" class="btn btn-lg btn-primary btn-inscription center-block" id="inscription">
+                        S'inscrire
+                    </button>
+                </a>
             </div>
         </div>
-            <div class="row">
-                <div class="col-sm-12">
-                    <a href="{{ path('fos_user_security_login') }}"><button  type="button" class="btn btn-lg btn-primary btn-inscription center-block"  >Se connecter</button> </a>
-                </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <a href="{{ path('fos_user_security_login') }}">
+                    <button type="button" class="btn btn-lg btn-primary btn-inscription center-block">Se connecter
+                    </button>
+                </a>
             </div>
-            <div class="row">
-                <div class="col-sm-12">
-                    <button type="button" class="btn btn-lg btn-primary btn-inscription center-block" >Accéder au règlements</button>
-                </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <button type="button" class="btn btn-lg btn-primary btn-inscription center-block">Accéder au
+                    règlements
+                </button>
             </div>
+        </div>
 
     </div>
 

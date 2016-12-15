@@ -12,3 +12,7 @@ body{
 html{
     height:100%;
 }
+#profile{
+    color: white;
+    font-weight: 700;
+}
