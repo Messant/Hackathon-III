@@ -51,8 +51,25 @@ class DefaultController extends Controller
         $em = $this->getDoctrine()->getManager();
         $em->persist($en_attente);
         $em->flush();
-        return $this->render('FrontBundle:Default:joueur.html.twig', array(
+        $joueurs =$em->getRepository('BackBundle:User')->findAll();
+        $elu=$joueurs[array_rand($joueurs)];
+        $elu->setMeneur(1);
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($elu);
+        $em->flush();
+
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+        $test=$user->getRoles();
+        $etat_jeu =$em->getRepository('FrontBundle:EtatJeux')->findAll();
+
+        if ($test[0] == 'ROLE_ADMIN' && $etat_jeu[0]->getEtat()==2  ){
+            $role='go';
+        }else{
+            $role="joueur";
+        }
+        return $this->render('FrontBundle:Default:index.html.twig', array(
             'couleur_etat' => $this->getStatus_couleur(),
+            'role' => $role,
         ));
     }
 }
