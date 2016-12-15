@@ -18,3 +18,10 @@ body{
 html{
     height:100%;
 }
+
+a:link{
+    text-decoration: none;
+}
+#tailletexte{
+    font-size: 30px;
+}

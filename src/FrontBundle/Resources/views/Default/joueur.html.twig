@@ -11,25 +11,29 @@
                 <img src="{{ asset('images/logo.png') }}" class="center-block logo" alt="logo">
             </div>
         </div>
-            <div id="profile">
-                <div class="row">
-                    <div class="col-sm-12">
-                        Ton pseudo : {{ username }}
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-12">
-                        Ton mail : {{ email }}
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-12">
-                         Ton nombre de points : {{ classement }}
-                    </div>
+        <div id="profile">
+            <div class="row">
+                <div class="col-sm-12 paddingprofile">
+                    Ton pseudo : {{ username }}
                 </div>
             </div>
-        <a href=""><button type="button" class="btn btn-lg btn-success">Télécharge ta réponse</button> </a>
+            <div class="row">
+                <div class="col-sm-12 paddingprofile">
+                    Ton mail : {{ email }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 paddingprofile">
+                    Ton nombre de points : {{ classement }}
+                </div>
+            </div>
+            <h3 class="text-center"> Retrouve cette photo !</h3>
         </div>
+        <a href="{{ path('joueur_Envoi') }}">
+            <button type="button" class="btn btn-lg btn-success center-block telechargement"> Télécharge ta réponse
+            </button>
+        </a>
+    </div>
 
 
 
