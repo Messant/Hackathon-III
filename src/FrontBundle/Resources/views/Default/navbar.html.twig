@@ -4,7 +4,7 @@
 </head>
 
 <nav class="navbar  navbar-fixed-bottom">
-    <a class="navbar-brand {{ couleur_etat }}  btn-success mb-0" href="#">{% if couleur_etat == 'btn-success' %} <p>Jeux</p> {% endif %}</a>
+    <a class="navbar-brand {{ couleur_etat }}  btn-success mb-0" href="#">{% if couleur_etat == 'btn-success' %} <p>Jeux</p>{% elseif couleur_etat == 'btn-warning' %} <p>Attente</p>{% else %} <p>Fin</p> {% endif %}</a>
     <a class="navbar-brand mb-0" href="{{ path("joueur")}}"><span class="glyphicon glyphicon-user"></span></a>
     <a class="navbar-brand mb-0" href="{{ path("classement")}}"><span class="glyphicon glyphicon-education"></span></a>
     <a class="navbar-brand mb-0" href="{{ path('fos_user_security_logout') }}"><span class="fa fa-lock fa-1x"></span></a>
