@@ -10,6 +10,7 @@ imports:
 parameters:
     locale: en
     upload_directory: '%kernel.root_dir%/../web/upload'
+    brochures_directory: '%kernel.root_dir%/../web/uploads/brochures'
 
 framework:
     #esi:             ~
