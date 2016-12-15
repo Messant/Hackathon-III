@@ -33,8 +33,20 @@ class DefaultController extends Controller
      */
     public function joueurAction()
     {
+        if (!$this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY'))
+
+        { throw $this->createAccessDeniedException(); }
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+        $username = ($user->getUsername());
+        $email = ($user->getEmail());
+        $classement = ($user->getClassement());
+
+
         return $this->render('FrontBundle:Default:joueur.html.twig', array(
             'couleur_etat' => $this->getStatus_couleur(),
+            'username' => $username,
+            'email' => $email,
+            'classement' => $classement,
         ));
     }
 
