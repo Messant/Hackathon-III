@@ -5,6 +5,8 @@ namespace FrontBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use FrontBundle\Entity\EtatJeux;
+use FOS\UserBundle\Model\UserInterface;
+use Symfony\Component\HttpFoundation\Response;
 
 class DefaultController extends Controller
 {
@@ -115,12 +117,29 @@ class DefaultController extends Controller
      */
     public function getStatus_etat()
     {
+        if (!$this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
+                throw $this->createAccessDeniedException();
+        }
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+        //var_dump($user->getId());
+
+
         $em = $this->getDoctrine()->getManager();
         $en_attente =$em->getRepository('FrontBundle:EtatJeux')->find(1);
         $en_attente->setEtat(1);
         $em = $this->getDoctrine()->getManager();
         $em->persist($en_attente);
         $em->flush();
+
+        $joueurs =$em->getRepository('BackBundle:User')->findAll();
+        $elu=$joueurs[($user->getId())-1];
+        $elu->setMeneur(0);
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($elu);
+        $em->flush();
+
+
+
         return $this->render('FrontBundle:Default:joueur.html.twig', array(
             'couleur_etat' => $this->getStatus_couleur(),
         ));

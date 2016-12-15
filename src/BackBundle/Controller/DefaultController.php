@@ -51,14 +51,6 @@ class DefaultController extends Controller
         $em = $this->getDoctrine()->getManager();
         $em->persist($en_attente);
         $em->flush();
-
-        $joueurs =$em->getRepository('BackBundle:User')->findAll();
-        $elu=$joueurs[array_rand($joueurs)];
-        $elu->setMeneur(1);
-        $em = $this->getDoctrine()->getManager();
-        $em->persist($elu);
-        $em->flush();
-
         return $this->render('FrontBundle:Default:joueur.html.twig', array(
             'couleur_etat' => $this->getStatus_couleur(),
         ));
