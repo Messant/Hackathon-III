@@ -15,8 +15,18 @@ class DefaultController extends Controller
      */
     public function indexAction()
     {
+        if (!$this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
+            return $this->render('FrontBundle:Default:homepage.html.twig', array(
+            'couleur_etat' => $this->getStatus_couleur()));
+        }
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+        $em = $this->getDoctrine()->getManager();
+        $joueurs =$em->getRepository('BackBundle:User')->findAll();
+        $log=$joueurs[($user->getId())];
+
         return $this->render('FrontBundle:Default:index.html.twig', array(
             'couleur_etat' => $this->getStatus_couleur(),
+            'log' => $log,
         ));
     }
 
@@ -25,8 +35,17 @@ class DefaultController extends Controller
      */
     public function homepageAction()
     {
+        if (!$this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
+            throw $this->createAccessDeniedException();
+        }
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+        $em = $this->getDoctrine()->getManager();
+        $joueurs =$em->getRepository('BackBundle:User')->findAll();
+        $log=$joueurs[($user->getId())];
+        var_dump($user->getId());
         return $this->render('FrontBundle:Default:homepage.html.twig', array(
             'couleur_etat' => $this->getStatus_couleur(),
+            'log' => $log,
         ));
     }
 
