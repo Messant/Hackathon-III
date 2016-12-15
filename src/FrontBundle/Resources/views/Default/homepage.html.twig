@@ -1,8 +1,33 @@
 {% extends 'base.html.twig' %}
 {% block stylesheet %}
-    <link rel="stylesheet" href="{{ asset('css/homepage.css') }}">
+    {{ parent() }}
+    <link href="{{ asset('css/homepage.css') }}" rel="stylesheet" >
 {% endblock %}
 
 {% block content %}
-    homepage
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12">
+                <img src="{{ asset('images/logo.png') }}" class="center-block logo" alt="logo">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <a href="{{ path('fos_user_registration_register') }}"><button  type="button" class="btn btn-lg btn-primary btn-inscription center-block" id="inscription"  >S'inscrire</button> </a>
+            </div>
+        </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <a href="{{ path('fos_user_security_login') }}"><button  type="button" class="btn btn-lg btn-primary btn-inscription center-block"  >Se connecter</button> </a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <button type="button" class="btn btn-lg btn-primary btn-inscription center-block" >Accéder au règlements</button>
+                </div>
+            </div>
+
+    </div>
+
+
 {% endblock %}

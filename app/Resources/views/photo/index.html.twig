@@ -17,7 +17,7 @@
             <tr>
                 <td><a href="{{ path('photo_show', { 'id': photo.id }) }}">{{ photo.id }}</a></td>
                 <td>{% if photo.validated %}Yes{% else %}No{% endif %}</td>
-                <td>{{ photo.url }}</td>
+                <td><img src="{{ asset('upload/' ~  photo.url )}}"></td>
                 <td>
                     <ul>
                         <li>
