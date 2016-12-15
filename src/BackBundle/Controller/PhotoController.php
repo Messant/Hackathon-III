@@ -7,6 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\File\Url;
 
 /**
  * Photo controller.
@@ -46,19 +47,19 @@ class PhotoController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $logo = $photo->getPhoto();
+            $url = $photo->getUrl();
 
             // Generate a unique name for the file before saving it
-            $photoName = md5(uniqid()).'.'.$photo->guessExtension();
+            $urlName = md5(uniqid()).'.'.$url->guessExtension();
 
             // Move the file to the directory where brochures are stored
-            $logo->move(
+            $url->move(
                 $this->getParameter('upload_directory'),
-                $photoName
+                $urlName
             );
             // Update the 'brochure' property to store the PDF file name
             // instead of its contents
-            $photo->setPhoto($photoName);
+            $photo->setUrl($urlName);
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($photo);
@@ -99,36 +100,36 @@ class PhotoController extends Controller
      */
     public function editAction(Request $request, Photo $photo)
     {
-        if (is_file ($photo->getPhoto())) {
-            $old_photo = new Photo($this->getParameter('upload_directory') . '/' . $photo->getPhoto());
+        if (is_file ($photo->getUrl())) {
+            $old_photo = new Url($this->getParameter('upload_directory') . '/' . $photo->getUrl());
         } else {
-            $photo->setPhoto('');
+            $photo->setUrl('');
         }
 
         $deleteForm = $this->createDeleteForm($photo);
-        $editForm = $this->createForm('BackBundle\Form\PartenaireType', $photo);
+        $editForm = $this->createForm('BackBundle\Form\PhotoType', $photo);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
 
             // Update the 'brochure' property to store the PDF file name
             // instead of its contents
-            if (!$photo->getPhoto())
+            if (!$photo->getUrl())
             {
-                $photo->setPhoto($old_photo);
+                $photo->setUrl($old_photo);
             } else
             {
-                $Photo = $photo->getPhoto();
+                $url = $photo->getUrl();
 
                 // Generate a unique name for the file before saving it
-                $photoName = md5(uniqid()).'.'.$photo->guessExtension();
+                $urlName = md5(uniqid()).'.'.$url->guessExtension();
 
                 // Move the file to the directory where brochures are stored
-                $photo->move(
+                $url->move(
                     $this->getParameter('upload_directory'),
-                    $photoName
+                    $urlName
                 );
-                $photo->setLogo($photoName);
+                $photo->setUrl($urlName);
 
             }
             $this->getDoctrine()->getManager()->flush();
