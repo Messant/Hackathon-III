@@ -2,6 +2,7 @@
 
 namespace BackBundle\Form;
 
+
 use Doctrine\DBAL\Types\TextType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
@@ -16,8 +17,11 @@ class UserType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('meneur', TextType::class, array('require'=>false,))
-            ->add('classement', NumberType::class, array('require'=>false,))
-            ->add('etat', NumberType::class)        ;
+                ->add('classement', NumberType::class, array('require'=>false,))
+                ->add('etat', NumberType::class)
+                ->add('pseudo')->add('meneur')->add('classement')->add('etat')
+        ;
+
     }
     
     /**

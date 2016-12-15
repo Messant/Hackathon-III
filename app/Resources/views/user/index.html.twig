@@ -7,6 +7,7 @@
         <thead>
             <tr>
                 <th>Id</th>
+                <th>Pseudo</th>
                 <th>Meneur</th>
                 <th>Classement</th>
                 <th>Actions</th>
@@ -16,6 +17,7 @@
         {% for user in users %}
             <tr>
                 <td><a href="{{ path('user_show', { 'id': user.id }) }}">{{ user.id }}</a></td>
+                <td>{{ user.pseudo }}</td>
                 <td>{% if user.meneur %}Yes{% else %}No{% endif %}</td>
                 <td>{{ user.classement }}</td>
                 <td>
