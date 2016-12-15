@@ -1,8 +1,8 @@
 <?php
 
-namespace AppBundle\Controller;
+namespace BackBundle\Controller;
 
-use AppBundle\Entity\Etat;
+use BackBundle\Entity\Etat;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
@@ -24,7 +24,7 @@ class EtatController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $etats = $em->getRepository('AppBundle:Etat')->findAll();
+        $etats = $em->getRepository('BackBundle:Etat')->findAll();
 
         return $this->render('etat/index.html.twig', array(
             'etats' => $etats,
@@ -40,7 +40,7 @@ class EtatController extends Controller
     public function newAction(Request $request)
     {
         $etat = new Etat();
-        $form = $this->createForm('AppBundle\Form\EtatType', $etat);
+        $form = $this->createForm('BackBundle\Form\EtatType', $etat);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -82,7 +82,7 @@ class EtatController extends Controller
     public function editAction(Request $request, Etat $etat)
     {
         $deleteForm = $this->createDeleteForm($etat);
-        $editForm = $this->createForm('AppBundle\Form\EtatType', $etat);
+        $editForm = $this->createForm('BackBundle\Form\EtatType', $etat);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {

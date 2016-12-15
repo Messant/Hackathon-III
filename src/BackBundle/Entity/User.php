@@ -1,7 +1,12 @@
 <?php
-// src/AppBundle/Entity/User.php
+/**
+ * Created by PhpStorm.
+ * User: m21
+ * Date: 25/11/16
+ * Time: 12:01
+ */
 
-namespace AppBundle\Entity;
+namespace BackBundle\Entity;
 
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
@@ -16,23 +21,8 @@ class User extends BaseUser
      * @ORM\Id
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
-     * @ORM\ManyToOne(targetEntity="Etat")
      */
     protected $id;
-
-    /**
-     *
-     * @ORM\Column(type="integer")
-     *
-     */
-    protected $classement;
-
-    /**
-     *
-     * @ORM\Column(type="boolean")
-     *
-     */
-    protected $meneur;
 
     public function __construct()
     {
