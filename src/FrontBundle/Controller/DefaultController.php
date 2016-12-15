@@ -4,6 +4,7 @@ namespace FrontBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use FrontBundle\Entity\EtatJeux;
 
 class DefaultController extends Controller
 {
@@ -12,7 +13,9 @@ class DefaultController extends Controller
      */
     public function indexAction()
     {
-        return $this->render('FrontBundle:Default:index.html.twig');
+        return $this->render('FrontBundle:Default:index.html.twig', array(
+            'couleur_etat' => $this->getStatus_couleur(),
+        ));
     }
 
     /**
@@ -96,13 +99,25 @@ class DefaultController extends Controller
         ));
     }
 
-    private function getStatus_couleur(){
+    private function getStatus_couleur()
+    {
         $em = $this->getDoctrine()->getManager();
-        $statut = 2 ;
         $etats = $em->getRepository('BackBundle:Etat')->findAll();
+        $etatsactu = $em->getRepository('FrontBundle:EtatJeux')->findAll();
+        $statut = $etatsactu[0]->getEtat() ;
         $couleur =($etats [$statut]);
         $couleur_etat =($couleur-> getCouleur());
         return $couleur_etat;
+    }
+
+    private function getStatus_etat()
+    {
+        $em = $this->getDoctrine()->getManager();
+        $en_attente =$em->getRepository('FrontBundle:EtatJeux')->find(1);
+        $en_attente->setEtat(1);
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($en_attente);
+        $em->flush();
     }
 
 }
