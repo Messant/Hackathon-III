@@ -28,12 +28,6 @@ class Etat
      */
     private $status;
 
-    /**
-     * @var int
-     *
-     * @ORM\OneToMany(targetEntity="User", mappedBy="etat")
-     */
-    private $users;
 
     /**
      * Get id
@@ -66,51 +60,5 @@ class Etat
     public function getStatus()
     {
         return $this->status;
-    }
-
-    /**
-     * @param int $users
-     */
-    public function setUsers($users)
-    {
-        $this->user = $users;
-    }
-
-    /**
-     * @return int
-     */
-    public function getUsers()
-    {
-        return $this->users;
-    }
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->users = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-
-    /**
-     * Add users
-     *
-     * @param \BackBundle\Entity\User $users
-     * @return Etat
-     */
-    public function addUser(\BackBundle\Entity\User $users)
-    {
-        $this->users[] = $users;
-
-        return $this;
-    }
-
-    /**
-     * Remove users
-     *
-     * @param \BackBundle\Entity\User $users
-     */
-    public function removeUser(\BackBundle\Entity\User $users)
-    {
-        $this->users->removeElement($users);
     }
 }
