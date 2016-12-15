@@ -110,7 +110,10 @@ class DefaultController extends Controller
         return $couleur_etat;
     }
 
-    private function getStatus_etat()
+    /**
+     * @Route("/changetat", name="changetat")
+     */
+    public function getStatus_etat()
     {
         $em = $this->getDoctrine()->getManager();
         $en_attente =$em->getRepository('FrontBundle:EtatJeux')->find(1);
@@ -118,6 +121,9 @@ class DefaultController extends Controller
         $em = $this->getDoctrine()->getManager();
         $em->persist($en_attente);
         $em->flush();
+        return $this->render('FrontBundle:Default:joueur.html.twig', array(
+            'couleur_etat' => $this->getStatus_couleur(),
+        ));
     }
 
 }

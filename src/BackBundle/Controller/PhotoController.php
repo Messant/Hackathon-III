@@ -29,6 +29,7 @@ class PhotoController extends Controller
 
         return $this->render('photo/index.html.twig', array(
             'photos' => $photos,
+            'couleur_etat' => $this->getStatus_couleur(),
         ));
     }
 
@@ -69,6 +70,7 @@ class PhotoController extends Controller
         return $this->render('photo/new.html.twig', array(
             'photo' => $photo,
             'form' => $form->createView(),
+            'couleur_etat' => $this->getStatus_couleur(),
         ));
     }
 
@@ -85,6 +87,7 @@ class PhotoController extends Controller
         return $this->render('photo/show.html.twig', array(
             'photo' => $photo,
             'delete_form' => $deleteForm->createView(),
+            'couleur_etat' => $this->getStatus_couleur(),
         ));
     }
 
@@ -137,6 +140,7 @@ class PhotoController extends Controller
             'photo' => $photo,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
+            'couleur_etat' => $this->getStatus_couleur(),
         ));
     }
 
@@ -174,5 +178,18 @@ class PhotoController extends Controller
             ->setMethod('DELETE')
             ->getForm()
         ;
+    }
+
+
+
+    private function getStatus_couleur()
+    {
+        $em = $this->getDoctrine()->getManager();
+        $etats = $em->getRepository('BackBundle:Etat')->findAll();
+        $etatsactu = $em->getRepository('FrontBundle:EtatJeux')->findAll();
+        $statut = $etatsactu[0]->getEtat() ;
+        $couleur =($etats [$statut]);
+        $couleur_etat =($couleur-> getCouleur());
+        return $couleur_etat;
     }
 }

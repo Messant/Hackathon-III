@@ -28,6 +28,7 @@ class EtatController extends Controller
 
         return $this->render('etat/index.html.twig', array(
             'etats' => $etats,
+            'couleur_etat' => $this->getStatus_couleur(),
         ));
     }
 
@@ -54,6 +55,7 @@ class EtatController extends Controller
         return $this->render('etat/new.html.twig', array(
             'etat' => $etat,
             'form' => $form->createView(),
+            'couleur_etat' => $this->getStatus_couleur(),
         ));
     }
 
@@ -70,6 +72,7 @@ class EtatController extends Controller
         return $this->render('etat/show.html.twig', array(
             'etat' => $etat,
             'delete_form' => $deleteForm->createView(),
+            'couleur_etat' => $this->getStatus_couleur(),
         ));
     }
 
@@ -95,6 +98,7 @@ class EtatController extends Controller
             'etat' => $etat,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
+            'couleur_etat' => $this->getStatus_couleur(),
         ));
     }
 
@@ -132,5 +136,16 @@ class EtatController extends Controller
             ->setMethod('DELETE')
             ->getForm()
         ;
+    }
+
+    private function getStatus_couleur()
+    {
+        $em = $this->getDoctrine()->getManager();
+        $etats = $em->getRepository('BackBundle:Etat')->findAll();
+        $etatsactu = $em->getRepository('FrontBundle:EtatJeux')->findAll();
+        $statut = $etatsactu[0]->getEtat() ;
+        $couleur =($etats [$statut]);
+        $couleur_etat =($couleur-> getCouleur());
+        return $couleur_etat;
     }
 }
