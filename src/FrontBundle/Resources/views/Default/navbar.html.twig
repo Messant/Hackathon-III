@@ -1,7 +1,12 @@
-<nav class="navbar navbar-fixed-bottom navbar-dark">
-    <a class="navbar-brand" href="#">Status</a>
-    <a class="navbar-brand" href="{{ path("joueur")}}"><span class="glyphicon glyphicon-user"></span></a>
-    <a class="navbar-brand" href="{{ path("classement")}}"><span class="glyphicon glyphicon-education"></span></a>
-    <a class="navbar-brand" href="#"><span class="glyphicon glyphicon-remove-circle"></span></a>
-</nav>
+<head>
+    <link href="{{ asset('css/bootstrap/css/bootstrap.css')}}" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="{{ asset('images/favicon.ico') }}" />
+</head>
 
+<nav class="navbar  navbar-fixed-bottom">
+    <a class="navbar-brand {{ couleur_etat }}  btn-success mb-0" href="#">{{ couleur_etat }}</a>
+    <a class="navbar-brand mb-0" href="{{ path("joueur")}}"><span class="glyphicon glyphicon-user"></span></a>
+    <a class="navbar-brand mb-0" href="{{ path("classement")}}"><span class="glyphicon glyphicon-education"></span></a>
+    <a class="navbar-brand mb-0" href="{{ path('fos_user_security_logout') }}"><span class="fa fa-lock fa-1x"></span></a>
+</nav>
+navbar

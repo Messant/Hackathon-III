@@ -9,6 +9,7 @@
 
     <link href="{{ asset('css/bootstrap/css/bootstrap.css')}}" rel="stylesheet">
     <link href="{{ asset('css/font-awesome.min.css')}}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('font-awesome-4.6.3/css/font-awesome.min.css')}}">
 
 
     {% block stylesheets %}
@@ -42,7 +43,7 @@
 
 {% block footer %}
 
-
+    {% include 'FrontBundle:Default:navbar.html.twig' %}
 {% endblock %}
 
 

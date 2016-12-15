@@ -28,6 +28,12 @@ class Etat
      */
     private $status;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="couleur", type="string")
+     */
+    private $couleur;
 
     /**
      * Get id
@@ -61,4 +67,21 @@ class Etat
     {
         return $this->status;
     }
+
+    /**
+     * @return int
+     */
+    public function getCouleur()
+    {
+        return $this->couleur;
+    }
+
+    /**
+     * @param int $couleur
+     */
+    public function setCouleur($couleur)
+    {
+        $this->couleur = $couleur;
+    }
+
 }
