@@ -138,6 +138,15 @@ class DefaultController extends Controller
         $em->persist($elu);
         $em->flush();
 
+        $joueur_gagnant = 4;
+        $nv_elu=$joueurs[$joueur_gagnant -1];
+        $nv_elu->setMeneur(1);
+        $nvclassement = $nv_elu->getClassement()+1;
+        $nv_elu->setClassement($nvclassement);
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($elu);
+        $em->flush();
+
 
 
         return $this->render('FrontBundle:Default:joueur.html.twig', array(
