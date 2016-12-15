@@ -42,14 +42,14 @@ class User extends BaseUser
     /**
      * @var string
      *
-     * @ORM\Column(name="meneur", type="boolean")
+     * @ORM\Column(name="meneur", type="boolean", nullable=true)
      */
     private $meneur;
 
     /**
-     * @var string
+     * @var int
      *
-     * @ORM\Column(name="classement", type="integer")
+     * @ORM\Column(name="classement", type="integer", nullable=true)
      */
     private $classement;
 
