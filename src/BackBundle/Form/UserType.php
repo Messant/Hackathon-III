@@ -19,7 +19,9 @@ class UserType extends AbstractType
         $builder->add('meneur', TextType::class, array('require'=>false,))
                 ->add('classement', NumberType::class, array('require'=>false,))
                 ->add('etat', NumberType::class)
-                ->add('pseudo')->add('meneur')->add('classement')->add('etat')
+                ->add('meneur')
+                ->add('classement')
+                ->add('etat')
         ;
 
     }

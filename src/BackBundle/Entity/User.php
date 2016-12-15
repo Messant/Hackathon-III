@@ -26,12 +26,6 @@ class User extends BaseUser
     }
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="pseudo")
-     */
-    private $pseudo;
-    /**
     * @var string
     *
     * @ORM\OneToMany(targetEntity="Photo", mappedBy="user")
@@ -159,22 +153,6 @@ class User extends BaseUser
     public function getPhotos()
     {
         return $this->photos;
-    }
-
-    /**
-     * @return string
-     */
-    public function getPseudo()
-    {
-        return $this->pseudo;
-    }
-
-    /**
-     * @param string $pseudo
-     */
-    public function setPseudo($pseudo)
-    {
-        $this->pseudo = $pseudo;
     }
 
 }
