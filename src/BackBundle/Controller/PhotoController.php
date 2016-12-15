@@ -5,7 +5,8 @@ namespace BackBundle\Controller;
 use BackBundle\Entity\Photo;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Photo controller.
@@ -45,6 +46,20 @@ class PhotoController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $logo = $photo->getPhoto();
+
+            // Generate a unique name for the file before saving it
+            $photoName = md5(uniqid()).'.'.$photo->guessExtension();
+
+            // Move the file to the directory where brochures are stored
+            $logo->move(
+                $this->getParameter('upload_directory'),
+                $photoName
+            );
+            // Update the 'brochure' property to store the PDF file name
+            // instead of its contents
+            $photo->setPhoto($photoName);
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($photo);
             $em->flush($photo);
@@ -84,11 +99,38 @@ class PhotoController extends Controller
      */
     public function editAction(Request $request, Photo $photo)
     {
+        if (is_file ($photo->getPhoto())) {
+            $old_photo = new Photo($this->getParameter('upload_directory') . '/' . $photo->getPhoto());
+        } else {
+            $photo->setPhoto('');
+        }
+
         $deleteForm = $this->createDeleteForm($photo);
-        $editForm = $this->createForm('BackBundle\Form\PhotoType', $photo);
+        $editForm = $this->createForm('BackBundle\Form\PartenaireType', $photo);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
+
+            // Update the 'brochure' property to store the PDF file name
+            // instead of its contents
+            if (!$photo->getPhoto())
+            {
+                $photo->setPhoto($old_photo);
+            } else
+            {
+                $Photo = $photo->getPhoto();
+
+                // Generate a unique name for the file before saving it
+                $photoName = md5(uniqid()).'.'.$photo->guessExtension();
+
+                // Move the file to the directory where brochures are stored
+                $photo->move(
+                    $this->getParameter('upload_directory'),
+                    $photoName
+                );
+                $photo->setLogo($photoName);
+
+            }
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('photo_edit', array('id' => $photo->getId()));

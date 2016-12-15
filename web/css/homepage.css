@@ -1,0 +1,20 @@
+.btn-inscription{
+margin-bottom: 2em;
+}
+#inscription{
+    margin-top:4em;
+}
+body{
+    background-image:url("../images/background-photo.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    height:100%;
+}
+
+.logo{
+    padding-top: 9em;
+}
+html{
+    height:100%;
+}
