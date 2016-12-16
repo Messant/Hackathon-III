@@ -21,6 +21,10 @@ html{
 }
 .telechargement{
     margin-top: 12em;
+    /*max-width: 20%;*/
+    /*overflow: hidden;*/
+    text-overflow: ellipsis;
+
 }
 
 a:link{
@@ -28,4 +32,16 @@ a:link{
 }
 .paddingprofile{
     padding-top:3px;
+}
+
+.title {
+    color: white;
+}
+
+.card {
+    background-color: rgba(255, 255, 255, 0.8);
+}
+
+.remember {
+    color: grey;
 }

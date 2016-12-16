@@ -1,9 +1,31 @@
 body {
-    background: #e9e9e9;
+    /*background: #e9e9e9;*/
+    background-image:url("../images/background-photo.jpg");
+    background-size: cover;
+    /*background-repeat: no-repeat;*/
+    /*background-position: center;*/
+    min-height:100%;
     color: #666666;
     font-size: 14px;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+}
+
+.title {
+    color: white;
+}
+
+
+.remember {
+    color: grey;
+}
+
+.form1 {
+    margin-left: 2em;
+}
+
+.form1 .input {
+    margin-left: 1em;
 }
 
 /* Pen Title */
