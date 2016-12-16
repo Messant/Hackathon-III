@@ -8,12 +8,13 @@
 <div class="container">
     <div class="card"></div>
     <div class="card">
-        <h1 class="title h1">Login</h1>
+        <h1 class="title h1">Merci de votre inscription</h1>
         <div class="input-container">
-    <p>{{ 'registration.confirmed'|trans({'%username%': user.username}) }}</p>
+    {#<p>{{ 'registration.confirmed'|trans({'%username%': user.username}) }}</p>#}
     {% if targetUrl %}
     <p><a href="{{ targetUrl }}">{{ 'registration.back'|trans }}</a></p>
     {% endif %}
+    <a href="{{ path('joueur') }}"><button type="button" class="btn btn-lg btn-primary btn-inscription center-block" >Commencez à jouer !</button></a>
     </div>
 </div>
 </div>
