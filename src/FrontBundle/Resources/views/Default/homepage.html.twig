@@ -13,11 +13,11 @@
         </div>
         <div class="row">
             <div class="col-sm-12">
-                <a href="{{ path('plateforme') }}">
-                    <button type="button" class="btn btn-lg btn-primary fancy-btn open center-block">Accéder au
+
+                    <button type="button" class="btn fancy-btn open center-block">Accéder au
                         règlements
                     </button>
-                </a>
+
             </div>
             <div class="modal-frame">
                 <div class="modal">
@@ -54,6 +54,29 @@
 
 {% endblock %}
 
-{% block footer %}
+{% block javascript %}
+    <script>
+        $(document).on('ready', function(){
+            $modal = $('.modal-frame');
+            $overlay = $('.modal-overlay');
 
+            /* Need this to clear out the keyframe classes so they dont clash with each other between ener/leave. Cheers. */
+            $modal.bind('webkitAnimationEnd oanimationend msAnimationEnd animationend', function(e){
+                if($modal.hasClass('state-leave')) {
+                    $modal.removeClass('state-leave');
+                }
+            });
+
+            $('.close').on('click', function(){
+                $overlay.removeClass('state-show');
+                $modal.removeClass('state-appear').addClass('state-leave');
+            });
+
+            $('.open').on('click', function(){
+                $overlay.addClass('state-show');
+                $modal.removeClass('state-leave').addClass('state-appear');
+            });
+
+        });
+    </script>
 {% endblock %}
