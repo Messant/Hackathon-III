@@ -57,7 +57,6 @@ class DefaultController extends Controller
         $em = $this->getDoctrine()->getManager();
         $joueurs =$em->getRepository('BackBundle:User')->findAll();
         $log=$joueurs[($user->getId())];
-        var_dump($user->getId());
         return $this->render('FrontBundle:Default:homepage.html.twig', array(
             'couleur_etat' => $this->getStatus_couleur(),
             'log' => $log,
@@ -204,5 +203,7 @@ class DefaultController extends Controller
             'couleur_etat' => $this->getStatus_couleur(),
         ));
     }
+
+
 
 }
