@@ -1,15 +1,23 @@
 {% extends 'base.html.twig' %}
+{% block stylesheet %}
+    <link rel="stylesheet" href="{{ asset('css/meneur_validation.css') }}">
+{% endblock %}
 
 
 
-    {% block stylesheet %}
-        <link rel="stylesheet" href="{{ asset('css/meneur_validation.css') }}">
-    {% endblock %}
 
 {% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <h1 class="title h1 ">Meneur validez</h1>
 
 
-    <a class="btn" href="{{ path('changetat') }}">valider la photo</a>
 
+                <a href="{{ path('meneur_validation') }}<button type="button" class="btn btn-success btn-lg"><span class="glyphicon glyphicon-ok"></span></button></a>
+                <a href="{{ path('changetat') }}<button type="button" class="btn btn-danger btn-lg"><span class="glyphicon glyphicon-remove"></span></button></a>
 
+            </div>
+        </div>
+    </div>
 {% endblock %}
