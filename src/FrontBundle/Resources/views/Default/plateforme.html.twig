@@ -5,7 +5,7 @@
     {% endblock %}
 
 {% block content %}
-    <div class="container-fluid">
+    <div class="container-fluid fond">
         <div class="row">
             <div class="col-sm-12">
                 <img src="{{ asset('images/logo.png') }}" class="center-block logo" alt="logo">
@@ -13,15 +13,43 @@
         </div>
         <div class="text-center reglement">
            <h2>Règlements du jeu</h2>
+
+            <p>
+                Bonjour à vous cher joueur, bienvenue dans notre jeux "Find Me If You Can", vous trouverez ci-dessous les règles qui régisses cette grande expérience. (Rassurez-vous elles sont simples ^^.
+            </p>
             <h3>1ère Règle</h3>
             <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi culpa dicta exercitationem in neque nesciunt nobis reiciendis. Accusamus alias aliquid dicta doloremque ex nobis porro quaerat vero! Consequuntur ipsum, quibusdam?
+                A chaque début de partie, un joueur est choisis aléatoirement pour devenir le meneur du jeux. Le meneur nouvellement choisi aura pour rôle de valider la photo du premier à réussir à accomplir sa mission.
             </p>
             <h3>2ème Règle</h3>
             <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. A, aliquam, commodi facilis fugit maxime nam porro quaerat reiciendis tenetur unde velit veniam voluptate, voluptatibus? Assumenda doloribus enim hic officia praesentium?
+                Les participants devront retrouver le lieu ou la photo a été prise.
             </p>
+            <h3>3ème Règle</h3>
+            <p>
+                La photo doit correspondre le plus précisément à la photo d'origine (oui la distance et l'angle on une importance ... et non l'heure de la journée ne compte pas)
+            </p>
+            <h3>4ème Règle</h3>
+            <p>
+                Le gagnant monte dans le classement et devient le nouveau meneur du challenge.
+            </p>
+            <h3>5ème Règle</h3>
+            <p>
+                Le gagnant de la manche doit à son tour poster une photo d’un nouveau lieu, que les participants vont rechercher... et par la suite valider le premier à envoyer une réponse.
+            </p>
+            <h3>6ème Règle</h3>
+            <p>
+                Le gagnant du jeu est celui qui remporte le plus de points, vous aurez bien sur le droit de le féliciter.
+            </p>
+            <a href="{{ path('homepage') }}"><button type="button" class="btn btn-lg btn-primary btn-inscription center-block" >Retour index</button></a>
+
+
         </div>
+
+
     </div>
+
+{% endblock %}
+{% block footer %}
 
 {% endblock %}
