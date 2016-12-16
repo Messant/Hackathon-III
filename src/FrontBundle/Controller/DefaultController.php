@@ -33,7 +33,7 @@ class DefaultController extends Controller
         if ($test[0] == 'ROLE_ADMIN' && $etat_jeu[0]->getEtat()==2  ) {
             $role = 'gogo';
         }elseif ($user_meneur_fini == 1){
-            $role = 'meneur_validation';
+            $role = 'meneur_upload';
         }else{
             $role="joueur";
         }
@@ -57,7 +57,7 @@ class DefaultController extends Controller
         $em = $this->getDoctrine()->getManager();
         $joueurs =$em->getRepository('BackBundle:User')->findAll();
         $log=$joueurs[($user->getId())];
-        var_dump($user->getId());
+      //  var_dump($user->getId());
         return $this->render('FrontBundle:Default:homepage.html.twig', array(
             'couleur_etat' => $this->getStatus_couleur(),
             'log' => $log,
@@ -127,6 +127,16 @@ class DefaultController extends Controller
     public function meneurValidationAction()
     {
         return $this->render('FrontBundle:Default:meneur_validation.html.twig', array(
+            'couleur_etat' => $this->getStatus_couleur(),
+        ));
+    }
+
+    /**
+     * @Route("/meneur_upload", name="meneur_upload")
+     */
+    public function meneurUploadAction()
+    {
+        return $this->render('FrontBundle:Default:meneur_upload.html.twig', array(
             'couleur_etat' => $this->getStatus_couleur(),
         ));
     }
@@ -242,7 +252,7 @@ class DefaultController extends Controller
         }else{
             $role="joueur";
         }
-        var_dump($role);
+      //  var_dump($role);
 
 
         $em = $this->getDoctrine()->getManager();
