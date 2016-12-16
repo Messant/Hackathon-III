@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 class DefaultController extends Controller
 {
     /**
-     * @Route("/")
+     * @Route("/", name="index")
      */
     public function indexAction()
     {
@@ -23,10 +23,25 @@ class DefaultController extends Controller
         $em = $this->getDoctrine()->getManager();
         $joueurs =$em->getRepository('BackBundle:User')->findAll();
         $log=$joueurs[($user->getId())];
+        $test=$user->getRoles();
+        $etat_jeu =$em->getRepository('FrontBundle:EtatJeux')->findAll();
+        $users =$em->getRepository('BackBundle:User')->findAll();
+        $user_meneur=$users[($user->getId()-1)];
+        $user_meneur_fini= $user_meneur->getMeneur();
+       // var_dump($user_meneur_fini);
+
+        if ($test[0] == 'ROLE_ADMIN' && $etat_jeu[0]->getEtat()==2  ) {
+            $role = 'gogo';
+        }elseif ($user_meneur_fini == 1){
+            $role = 'meneur_upload';
+        }else{
+            $role="joueur";
+        }
 
         return $this->render('FrontBundle:Default:index.html.twig', array(
             'couleur_etat' => $this->getStatus_couleur(),
             'log' => $log,
+            'role' => $role,
         ));
     }
 
@@ -42,6 +57,7 @@ class DefaultController extends Controller
         $em = $this->getDoctrine()->getManager();
         $joueurs =$em->getRepository('BackBundle:User')->findAll();
         $log=$joueurs[($user->getId())];
+      //  var_dump($user->getId());
         return $this->render('FrontBundle:Default:homepage.html.twig', array(
             'couleur_etat' => $this->getStatus_couleur(),
             'log' => $log,
@@ -95,8 +111,13 @@ class DefaultController extends Controller
      */
     public function joueurEnvoiAction()
     {
+        $em = $this->getDoctrine()->getManager();
+        $photos= $em->getRepository('BackBundle:Photo')->findAll();
+       // var_dump($photos);
+        $photo=$photos[0]->getUrl();
         return $this->render('FrontBundle:Default:joueur_envoi_photo.html.twig', array(
             'couleur_etat' => $this->getStatus_couleur(),
+            'photo' => $photo,
         ));
     }
 
@@ -106,6 +127,16 @@ class DefaultController extends Controller
     public function meneurValidationAction()
     {
         return $this->render('FrontBundle:Default:meneur_validation.html.twig', array(
+            'couleur_etat' => $this->getStatus_couleur(),
+        ));
+    }
+
+    /**
+     * @Route("/meneur_upload", name="meneur_upload")
+     */
+    public function meneurUploadAction()
+    {
+        return $this->render('FrontBundle:Default:meneur_upload.html.twig', array(
             'couleur_etat' => $this->getStatus_couleur(),
         ));
     }
@@ -145,10 +176,10 @@ class DefaultController extends Controller
     /**
      * @Route("/changetat", name="changetat")
      */
-    public function getStatus_etat()
+        public function getStatus_etat()
     {
         if (!$this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
-                throw $this->createAccessDeniedException();
+            throw $this->createAccessDeniedException();
         }
         $user = $this->get('security.token_storage')->getToken()->getUser();
         //var_dump($user->getId());
@@ -177,13 +208,70 @@ class DefaultController extends Controller
         $em->persist($elu);
         $em->flush();
 
+        if (!$this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY'))
+
+        { throw $this->createAccessDeniedException(); }
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+        $username = ($user->getUsername());
+        $email = ($user->getEmail());
+        $classement = ($user->getClassement());
+
 
 
         return $this->render('FrontBundle:Default:joueur.html.twig', array(
             'couleur_etat' => $this->getStatus_couleur(),
+            'username' => $username,
+            'email' => $email,
+            'classement' => $classement,
         ));
     }
 
+    /**
+     * @Route("/reset", name="reset")
+     */
+    public function resetAction()
+    {
+        if (!$this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
+            throw $this->createAccessDeniedException();
+        }
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+        $em = $this->getDoctrine()->getManager();
+        $joueurs =$em->getRepository('BackBundle:User')->findAll();
+        $log=$joueurs[($user->getId())];
+        $test=$user->getRoles();
+        $etat_jeu =$em->getRepository('FrontBundle:EtatJeux')->findAll();
+        $users =$em->getRepository('BackBundle:User')->findAll();
+        $user_meneur=$users[($user->getId()-1)];
+        $user_meneur_fini= $user_meneur->getMeneur();
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+        //var_dump($user->getId());
+        if ($test[0] == 'ROLE_ADMIN' && $etat_jeu[0]->getEtat()==2  ) {
+            $role = 'gogo';
+        }elseif ($user_meneur_fini == 1){
+            $role = 'meneur_validation';
+        }else{
+            $role="joueur";
+        }
+      //  var_dump($role);
 
 
+        $em = $this->getDoctrine()->getManager();
+        $en_attente = $em->getRepository('FrontBundle:EtatJeux')->find(1);
+        $en_attente->setEtat(2);
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($en_attente);
+        $em->flush();
+
+        $joueurs =$em->getRepository('BackBundle:User')->findAll();
+        foreach ($joueurs as $joueur) {
+            $joueur->setMeneur(0);
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($joueur);
+            $em->flush();
+        }
+        return $this->render('FrontBundle:Default:status.html.twig', array(
+            'role' => $role,
+            'couleur_etat' => $this->getStatus_couleur(),
+        ));
+    }
 }
