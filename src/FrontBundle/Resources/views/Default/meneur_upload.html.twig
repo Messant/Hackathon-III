@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+    {% block stylesheet %}
+        <link rel="stylesheet" href="{{ asset('css/meneur_validation.css') }}">
+    {% endblock %}
+
+{% block content %}
+
+
+    <a class="btn" href="{{ path('changetat') }}">envoyer photo</a>
+
+
+{% endblock %}
