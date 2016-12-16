@@ -1,0 +1,17 @@
+body{
+    background-image:url("../images/background-photo.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    height:100%;
+}
+
+
+html{
+    height:100%;
+}
+
+
+.upload{
+    margin-top: 500px;
+}
