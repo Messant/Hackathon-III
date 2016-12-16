@@ -7,12 +7,13 @@
 {% block content %}
     <div class="container">
         <div class="row">
-            <div class="col-sm-12">
+            <div class="col-sm-12 title">
                 <img src="{{ asset('images/logo.png') }}" class="center-block logo" alt="logo">
             </div>
         </div>
         <div class="row">
             <div class="col-sm-12">
+<<<<<<< HEAD
                 <a href="{{ path('plateforme') }}"><button type="button" class="btn btn-lg btn-primary btn-inscription center-block" >Accéder au règlements</button></a>
 
             </div>
@@ -28,8 +29,14 @@
                         </div>
                     </div>
                 </div>
+=======
+                <a href="{{ path('plateforme') }}">
+                    <button type="button" class="btn btn-lg btn-primary fancy-btn open center-block">Accéder au
+                        règlements
+                    </button>
+                </a>
+>>>>>>> 02006714768056a3106e5bcb735fc6a0a2155aa8
             </div>
-            <div class="modal-overlay"></div>
         </div>
         <div class="row">
             <div class="col-sm-6">
@@ -53,27 +60,6 @@
 
 {% block javascript %}
     <script>
-        $(document).on('ready', function(){
-            $modal = $('.modal-frame');
-            $overlay = $('.modal-overlay');
 
-            /* Need this to clear out the keyframe classes so they dont clash with each other between ener/leave. Cheers. */
-            $modal.bind('webkitAnimationEnd oanimationend msAnimationEnd animationend', function(e){
-                if($modal.hasClass('state-leave')) {
-                    $modal.removeClass('state-leave');
-                }
-            });
-
-            $('.close').on('click', function(){
-                $overlay.removeClass('state-show');
-                $modal.removeClass('state-appear').addClass('state-leave');
-            });
-
-            $('.open').on('click', function(){
-                $overlay.addClass('state-show');
-                $modal.removeClass('state-leave').addClass('state-appear');
-            });
-
-        });
     </script>
 {% endblock %}
