@@ -111,8 +111,13 @@ class DefaultController extends Controller
      */
     public function joueurEnvoiAction()
     {
+        $em = $this->getDoctrine()->getManager();
+        $photos= $em->getRepository('BackBundle:Photo')->findAll();
+       // var_dump($photos);
+        $photo=$photos[0]->getUrl();
         return $this->render('FrontBundle:Default:joueur_envoi_photo.html.twig', array(
             'couleur_etat' => $this->getStatus_couleur(),
+            'photo' => $photo,
         ));
     }
 
