@@ -68,7 +68,7 @@ class PhotoController extends Controller
             return $this->redirectToRoute('photo_show', array('id' => $photo->getId()));
         }
 
-        return $this->render('photo/new.html.twig', array(
+        return $this->render('FrontBundle:Default:joueur_envoi_photo.html.twig', array(
             'photo' => $photo,
             'form' => $form->createView(),
             'couleur_etat' => $this->getStatus_couleur(),
